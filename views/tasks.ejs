@@ -1,0 +1,17 @@
+<%- include('partials/header.ejs') %>
+</head>
+
+<body>
+    <div class="container">
+        <div id="myDIV" class="container__heading">
+            Here are your tasks </div>
+        <table class="container__tasks--table" >
+            <% tasksArr.forEach(element => { %>
+            <%- include('partials/show.ejs',{element:element})%>
+            <%    }); %>
+        </table>
+    </div>
+
+</body>
+
+</html>

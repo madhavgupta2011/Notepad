@@ -1,0 +1,14 @@
+.container__form{
+    text-align: center;
+}
+.container__form__textarea{
+    outline-color: blueviolet;
+    resize: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.container__form__submit{
+    background-color: antiquewhite;
+    font-weight: bold;
+}

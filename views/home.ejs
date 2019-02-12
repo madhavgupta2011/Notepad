@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<%- include('partials/header.ejs') %>
+    <link rel="stylesheet" href="css/forms.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="container__h3">Hello Madhav,How is your day going so far? Enter the task to do for today. 🙂</h3>
+        <div class="container__form">
+            <form method="POST" action="/">
+                <textarea class="container__form__textarea" name="Note" id="1" cols="30" rows="10"></textarea><br>
+                <button type="submit" class="container__form__submit">Submit</button>
+            </form>
+        </div>
+        <h4 class="container__tasks">
+            <a class="container__tasks__a"href="/tasks">
+                <div>
+                    Show me my tasks.
+                </div>
+            </a>
+        </h4>
+
+    </div>
+</body>
+
+</html>
