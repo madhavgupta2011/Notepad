@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 const homeRoute = require('./routes/Home');
 const taskRoute = require('./routes/tasks');
 
@@ -28,4 +30,4 @@ app.use((req,res,next)=>{
         'title': '404 Error'
     });
 })
-app.listen(3000);
+app.listen(port);
