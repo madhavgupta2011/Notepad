@@ -14,22 +14,14 @@ const Note = class Note {
             }
             const Note = JSON.parse(fileContent);            
             Note.push(this);
-            fs.writeFile(path.join(__dirname, '..', 'data', 'Notes.json'), JSON.stringify(Note), (err) => {
-                if (err) {
-                    return console.log(err);
-                }
-            })
+            fs.writeFileSync(path.join(__dirname, '..', 'data', 'Notes.json'), JSON.stringify(Note));
         });
     };
 
     static fetchAll(callback) {
-        fs.readFile(p,(err,fileContent)=>{
-            if(err){
-                return [];
-            }
-            const Note = JSON.parse(fileContent);
-            callback(Note);  
-        })
+        delete require.cache[require.resolve('../Data/Notes.json')]
+        const arr = require('../Data/Notes.json');
+        callback(arr);
     };
 };
 
