@@ -23,16 +23,13 @@ const Note = class Note {
     };
 
     static fetchAll(callback) {
-        delete require.cache[require.resolve('../Data/Notes.json')]
-        var myArr = require('../Data/Notes.json');
-        callback(myArr);
-        // fs.readFile(p,(err,fileContent)=>{
-        //     if(err){
-        //         return [];
-        //     }
-        //     const Note = JSON.parse(fileContent);
-        //     callback(Note);  
-        // })
+        fs.readFile(p,(err,fileContent)=>{
+            if(err){
+                return [];
+            }
+            const Note = JSON.parse(fileContent);
+            callback(Note);  
+        })
     };
 };
 
