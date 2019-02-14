@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node app.js"
+    "start": "nodemon app.js"
   },
   "author": "Madhav Gupta",
   "license": "ISC",
@@ -13,7 +13,9 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "nodemon": "^1.18.10"
+    "mongodb": "^3.1.13",
+    "nodemon": "^1.18.10",
+    "random-id": "^1.0.3"
   },
   "engines": {
     "node": "v10.14.2",
