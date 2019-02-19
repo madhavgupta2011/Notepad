@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <%- include('partials/header.ejs') %>
-    <link rel="stylesheet" href="css/forms.css">
 </head>
 
 <body>
+    <%- include('partials/navbar.ejs') %>
     <div class="container">
-        <h3 class="container__h3">Hello Madhav,How is your day going so far? Enter the task to do for today. 🙂</h3>
-        <div class="container__form">
-            <form method="POST" action="/">
-                <textarea class="container__form__textarea" name="Note" id="1" cols="30" rows="10"></textarea><br>
-                <button type="submit" class="container__form__submit">Submit</button>
-            </form>
+        <%-include('partials/card-bg.ejs')%>
+            <h5 class="card-header">Hello User,How is your day going so far? Enter the task to do for today. 🙂</h5>
+            <div class="card-body">
+                <form method="POST" action="/submit-task">
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="A Wonderful title" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Created By</label>
+                            <input type="text" class="form-control" name="user"  placeholder="An Amazing Person" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label >Description</label>
+                        <textarea class="form-control" name="description" placeholder="Keep it simple,sweet" ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                </form>
+            </div>
         </div>
         <h4 class="container__tasks">
-            <a class="container__tasks__a"href="/tasks">
+            <a class="btn btn-info btn-lg" href="/tasks" role="button">
                 <div>
                     Show me my tasks.
                 </div>
             </a>
         </h4>
-
     </div>
+
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>

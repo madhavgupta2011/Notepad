@@ -2,8 +2,20 @@
 </head>
 
 <body>
+    <%- include('partials/navbar.ejs') %>
     <div class="container">
-        <h3 class="container__h3"><%=task.title%></h3>
+        <div class="card tasks" style="background: rgba(255,255,255,0.7);">
+            <h5 class="card-header">
+                <%=task.title%>
+            </h5>
+            <div class="card-body">
+                <h6 class="text-muted">Created By : <%=task.user%></h6>
+                <p>Description : <%=task.description%></p>
+                <div class="buttons"><a href="/tasks/edit-task/<%=task._id%>" class="btn btn-primary btn-md">Edit</a></div>
+        <div class="buttons"><a href="/tasks/delete-task/<%=task._id%>" class="btn btn-primary btn-md">Delete</a></div>
+            </div>
+        </div>
+        <hr>
     </div>
 </body>
 

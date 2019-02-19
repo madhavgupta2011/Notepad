@@ -10,11 +10,20 @@ module.exports.getNote = (req, res, next) => {
 };
 
 //Function responsible for Saving the incoming Note
-module.exports.postNote = (req,res,next)=>{
-    console.log(req.body.Note);
-    const NoTe = new Note(req.body.Note);
-    NoTe.save();
-    res.redirect('/');
-    res.end();
-}
+module.exports.postNote = (req, res, next) => {
+    const title = req.body.title;
+    const user = req.body.user;
+    const description = req.body.description;
+    const NoTe = new Note({
+        title: title,
+        user: user,
+        description: description
+    });
+    NoTe.save().then((result) => {
+        res.redirect('/');
+        res.end();
+    }).catch((err) => {
+        console.log(err);
+    });;
 
+}

@@ -6,6 +6,6 @@ const router = app.Router();
 
 router.get('/',Homecontroller.getNote);
 
-router.post('/',Homecontroller.postNote);
+router.post('/submit-task',Homecontroller.postNote);
 
 module.exports = router;

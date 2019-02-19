@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<%- include('partials/header.ejs') %>
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="container">
+        <%-include('partials/card-bg.ejs')%>
+            <h5 class="card-header">Update the Note</h5>
+            <div class="card-body">
+                <form method="POST" action="/tasks/edit-task/<%=note._id%>">
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="title"value="<%=note.title%>" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Created By</label>
+                            <input type="text" class="form-control" name="user"  value="<%=note.user%>" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label >Description</label>
+                        <textarea class="form-control" name="description" required><%=note.description%></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
