@@ -1,5 +1,5 @@
 body { 
-    min-height: 100%;
+    min-height: 100vh;
     background: url('../assets/Images/david-travis-547046-unsplash.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -7,7 +7,7 @@ body {
     background-size: cover;
 }
 .container {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255,255,255,0.3);
     margin: 10vh;
     padding: 10px;
 }
@@ -25,15 +25,16 @@ body {
 
 @media only screen and (max-width: 600px) {
     body {
-        background: linear-gradient(to left top,rgb(85, 98, 212), rgb(187, 67, 181));
+        background: linear-gradient(to left bottom,rgb(85, 98, 212), rgb(211, 75, 204));
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
+        min-height: 100vh;
     }
     .container{
-        background-color: rgba(255,255,255,0.2);
-        margin: 0;
+        background-color: transparent;
+        margin: 5vh;
         padding-top: 10px;
     }
     .tasks{
