@@ -5,8 +5,8 @@
 */
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const mongoose = require('mongoose');
+const compression = require('compression');
 
 //Using express
 const app = express();
@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+app.use(compression());
 // Using the Routers to route the incoming requests. You can find the logic of these routes in the routes folder
 app.use(homeRoute);
 app.use(taskRoute);
