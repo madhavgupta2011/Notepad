@@ -23,6 +23,7 @@ body {
     display: block;
 }
 
+
 @media only screen and (max-width: 600px) {
     body {
         background: linear-gradient(to left bottom,rgb(85, 98, 212), rgb(211, 75, 204));

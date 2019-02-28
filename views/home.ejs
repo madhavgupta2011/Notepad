@@ -5,8 +5,22 @@
 <body>
     <%- include('partials/navbar.ejs') %>
     <div class="container">
+            <%-include('partials/card-bg.ejs')%>
+            <h3 class="card-header text-center">Introduction</h3>
+            <div class="card-body">
+                <h5>
+                    Hello User, This is a simple task manager app made by me.<br>
+                    <ul>
+                        <li> You can create your own tasks and submit them.</li>
+                        <li>You can go to the Tasks created by you by going to the tasks in navigation bar or by clicking on show me my tasks.</li>
+                    </ul> 
+                </h5>  
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <%-include('partials/card-bg.ejs')%>
-            <h5 class="card-header">Hello User,How is your day going so far? Enter the task to do for today. 🙂</h5>
+            <h5 class="card-header text-center">Enter Your task</h5>
             <div class="card-body">
                 <form method="POST" action="/submit-task">
                     <div class="form-row">
@@ -35,7 +49,6 @@
             </a>
         </h4>
     </div>
-
     <script src="/js/bootstrap.min.js"></script>
 </body>
 

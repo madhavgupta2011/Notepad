@@ -7,6 +7,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const compression = require('compression');
+const session = require('express-session');
+const MongoStore = require('connect-mongodb-session')(session);
 
 //Using express
 const app = express();
@@ -18,6 +20,12 @@ const port = process.env.PORT || 3000;
 const homeRoute = require('./routes/Home');
 const taskRoute = require('./routes/tasks');
 const errorRoute = require('./routes/404');
+const authRoute = require('./routes/Auth');
+
+const store = new MongoStore({
+    uri : 'mongodb+srv://madhavgupta2011:madhavgupta@notepadcluster-pr1q1.mongodb.net/notes',
+    collection : 'sessions'
+})
 
 // To set ejs as template engine
 app.set('view engine', 'ejs');
@@ -31,9 +39,22 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(compression());
+
+app.use(session({
+    secret: 'I am Madhav',
+    resave: false,
+    saveUninitialized: false,
+    store: store
+}))
+
+app.use((req,res,next)=>{
+    res.locals.isLoggedIn = req.session.isLoggedIn;
+    next();
+})
 // Using the Routers to route the incoming requests. You can find the logic of these routes in the routes folder
 app.use(homeRoute);
 app.use(taskRoute);
+app.use(authRoute);
 
 app.use(errorRoute);
 mongoose.connect('mongodb+srv://madhavgupta2011:madhavgupta@notepadcluster-pr1q1.mongodb.net/notes?retryWrites=true', {
@@ -44,5 +65,6 @@ mongoose.connect('mongodb+srv://madhavgupta2011:madhavgupta@notepadcluster-pr1q1
 }).catch((err) => {
     console.log(err);
 });
+
 
 //* End of the document
