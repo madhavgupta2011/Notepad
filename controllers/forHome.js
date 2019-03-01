@@ -12,12 +12,20 @@ module.exports.getNote = (req, res, next) => {
 //Function responsible for Saving the incoming Note
 module.exports.postNote = (req, res, next) => {
     const title = req.body.title;
-    const user = req.body.user;
+    let user = req.body.user;
     const description = req.body.description;
+    let userId
+    if(req.session.isLoggedIn){
+      userId   = req.session.user._id;
+    }
+    else{
+        userId=null
+    }
     const NoTe = new Note({
         title: title,
         user: user,
-        description: description
+        description: description,
+        userId:userId
     });
     NoTe.save().then((result) => {
         res.redirect('/');

@@ -3,11 +3,22 @@ const Note = require('../models/Note');
 const mongoose = require('mongoose');
 
 //Function responsible for showing all the tasks 
-module.exports.getTasks = (req,res,next)=>{
-    Note.find().then((arr) => {
-            res.render('tasks',{
-            'title' : 'Tasks',
-            'tasks' : arr
+module.exports.getTasks = (req, res, next) => {
+    let data={}
+    if (req.session.isLoggedIn) {
+        data= {
+            userId: req.session.user._id
+        }
+    } else {
+        data = {
+            userId: null
+        }
+    }
+    
+    Note.find(data).then((arr) => {
+        res.render('tasks', {
+            'title': 'Tasks',
+            'tasks': arr
         })
     }).catch((err) => {
         console.log(err);
@@ -15,58 +26,69 @@ module.exports.getTasks = (req,res,next)=>{
 };
 
 //Function responsible for showing the individual task detail
-module.exports.getTask = (req,res,next)=>{
+module.exports.getTask = (req, res, next) => {
     const ourTaskId = req.params.taskId;
     Note.findById(ourTaskId).then((ourTask) => {
-            res.render('task-detail',{
-                task:ourTask,
-                'title':ourTask.title
-            })
+        res.render('task-detail', {
+            task: ourTask,
+            'title': ourTask.title
+        })
     }).catch((err) => {
         console.log(err);
     });
 };
 
-module.exports.getEditTask = (req,res,next)=>{
+module.exports.getEditTask = (req, res, next) => {
     const taskId = req.params.taskId;
-    Note.findOne({_id:mongoose.Types.ObjectId(taskId)}).then((note) => {
-        res.render('edit-note',{
+    Note.findOne({
+        _id: mongoose.Types.ObjectId(taskId)
+    }).then((note) => {
+        res.render('edit-note', {
             title: 'Edit Note',
-            note:note
+            note: note
         })
     }).catch((err) => {
-      console.log(err);  
+        console.log(err);
     });
 }
 
-module.exports.postEditTask = (req,res,next)=>{
+module.exports.postEditTask = (req, res, next) => {
     const taskId = req.params.taskId;
     const updatedTitle = req.body.title;
     const updatedUser = req.body.user;
     const updatedDescription = req.body.description;
-    Note.findOne({_id:mongoose.Types.ObjectId(taskId)}).then((note)=>{
-        note.title=updatedTitle;
-        note.user=updatedUser;
-        note.description=updatedDescription;
-        return note.save();
-    }).then(()=>{
-        res.redirect('/')
-    })
-    .catch(err=>{
-        console.log(err);
-    })
+    let updatedUserId
+    if(req.session.isLoggedIn){
+updatedUserId = req.session.user._id;
+    }
+    else{
+        updatedUserId=null;
+    }
+
+    Note.findOne({
+            _id: mongoose.Types.ObjectId(taskId)
+        }).then((note) => {
+            note.title = updatedTitle;
+            note.user = updatedUser;
+            note.description = updatedDescription;
+            note.userId = updatedUserId;
+            return note.save();
+        }).then(() => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
-module.exports.getDeleteTask = (req,res,next)=>{
+module.exports.getDeleteTask = (req, res, next) => {
     const taskId = req.params.taskId;
-    Note.findOneAndDelete({_id:mongoose.Types.ObjectId(taskId)}).then((note)=>{
+    Note.findOneAndDelete({
+        _id: mongoose.Types.ObjectId(taskId)
+    }).then((note) => {
         res.redirect('/')
-    }).catch(err=>{
+    }).catch(err => {
         console.log(err);
     })
 
 }
-
-
-
-

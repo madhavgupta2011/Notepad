@@ -14,7 +14,12 @@ const noteSchema = new Schema({
     description:{
         type:String,
         required:true
+    },
+    userId:{
+        type:mongoose.Types.ObjectId,
+        required:false
     }
+
 })
 
 

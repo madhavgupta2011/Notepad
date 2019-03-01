@@ -49,6 +49,7 @@ module.exports.postLogIn = (req,res,next)=>{
                     }
                     req.session.isLoggedIn = true;
                     req.session.user = user;
+                    console.log(req.session.user);
                     res.redirect('/');
                 }).catch((err)=>{
                     console.log(err);

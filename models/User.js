@@ -16,9 +16,15 @@ const userSchema = new Schema({
         required: true
     },
     notes:[{
-        noteId:{
-            type: mongoose.Types.ObjectId,
-            required: true
+        note: {
+            title:{
+                type:String,
+                required:true
+            },
+            description:{
+                type:String,
+                required:true
+            }
         }
     }]
 })
