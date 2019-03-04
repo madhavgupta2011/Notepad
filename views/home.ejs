@@ -13,6 +13,7 @@
                     <ul>
                         <li> You can create your own tasks and submit them.</li>
                         <li>You can go to the Tasks created by you by going to the tasks in navigation bar or by clicking on show me my tasks.</li>
+                        <li>Once signed up, you will be able to create your personalized tasks.</li>
                     </ul> 
                 </h5>  
             </div>
@@ -28,6 +29,7 @@
                             <label>Title</label>
                             <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="A Wonderful title" required>
                         </div>
+                        <input type="hidden" name="_csrf" value= "<%= csrfToken %>">
                         <div class="form-group col-sm-6">
                             <label>Created By</label>
                             <input type="text" class="form-control" name="user"  placeholder="An Amazing Person" required>

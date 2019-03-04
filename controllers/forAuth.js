@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt');
 
 module.exports.getSignUp = (req, res, next) => {
     res.render('Sign-Up.ejs', {
-        title: 'Sign Up'
+        title: 'Sign Up',
+        csrfToken : req.csrfToken()
     });
 };
 
@@ -29,8 +30,12 @@ module.exports.postSignUp = (req, res, next) => {
 }
 
 module.exports.getLogIn = (req,res,next)=>{
+    let message = req.flash('error');
+    (message.length>0) ? message=message[0] : message=null
     res.render('Log-In',{
-        title: 'Log In'
+        title: 'Log In',
+        csrfToken : req.csrfToken(),
+        errorMessage: message
     });
 }
 
@@ -40,6 +45,7 @@ module.exports.postLogIn = (req,res,next)=>{
     User.findOne({email:email})
         .then((user)=>{
             if(!user){
+                req.flash('error','invalid username or password');
                 return res.redirect('/log-in');
             }
             bcrypt.compare(password,user.password)

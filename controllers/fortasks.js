@@ -14,11 +14,11 @@ module.exports.getTasks = (req, res, next) => {
             userId: null
         }
     }
-    
     Note.find(data).then((arr) => {
         res.render('tasks', {
             'title': 'Tasks',
-            'tasks': arr
+            'tasks': arr,
+            csrfToken : req.csrfToken()
         })
     }).catch((err) => {
         console.log(err);
@@ -31,7 +31,8 @@ module.exports.getTask = (req, res, next) => {
     Note.findById(ourTaskId).then((ourTask) => {
         res.render('task-detail', {
             task: ourTask,
-            'title': ourTask.title
+            'title': ourTask.title,
+            csrfToken : req.csrfToken()
         })
     }).catch((err) => {
         console.log(err);
@@ -45,7 +46,8 @@ module.exports.getEditTask = (req, res, next) => {
     }).then((note) => {
         res.render('edit-note', {
             title: 'Edit Note',
-            note: note
+            note: note,
+            csrfToken : req.csrfToken()
         })
     }).catch((err) => {
         console.log(err);

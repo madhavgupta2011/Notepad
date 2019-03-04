@@ -4,7 +4,8 @@ const Note = require('../models/Note');
 //Function responsible for getting the request of the homepage
 module.exports.getNote = (req, res, next) => {
     res.render('home', {
-        'title': 'Home'
+        'title': 'Home',
+        csrfToken : req.csrfToken()
     });
     res.end();
 };
@@ -14,6 +15,7 @@ module.exports.postNote = (req, res, next) => {
     const title = req.body.title;
     let user = req.body.user;
     const description = req.body.description;
+    description.replace('\n','\\n');
     let userId
     if(req.session.isLoggedIn){
       userId   = req.session.user._id;

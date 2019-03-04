@@ -4,8 +4,14 @@
 
 <body>
     <%- include('partials/navbar.ejs') %>
+    
     <div class="container">
         <%-include('partials/card-bg.ejs')%>
+        <% if(errorMessage) { %>
+            <div class="alert alert-danger" role="alert">
+                   <%= errorMessage %>
+                  </div>
+        <% } %>
         <h5 class="card-header text-center">Log In</h5>
         <div class="card-body center">
             <form method="POST" action="/log-in">
@@ -15,6 +21,7 @@
                         <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Your Name"
                             required>
                     </div> -->
+                    <input type="hidden" name="_csrf" value= "<%= csrfToken %>">
                     <div class="form-group col-sm-6">
                         <label>Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Email" required>
