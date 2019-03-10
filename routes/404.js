@@ -1,6 +1,6 @@
-const errorController = require('../controllers/forError');
+const errorController = require("../controllers/forError");
 
-const app = require('express');
+const app = require("express");
 
 const router = app.Router();
 
